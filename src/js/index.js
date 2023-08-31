@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import simpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const selectors = {
   form: document.querySelector('.search-form'),
@@ -7,11 +9,11 @@ const selectors = {
   btnLoadMore: document.querySelector('.js-load-more'),
 };
 
-selectors.form.addEventListener('submit', handlerSearch);
-selectors.btnLoadMore.addEventListener('click', handlerLoadMore);
-
 let page = 1;
 let hitsCounter = 0;
+
+selectors.form.addEventListener('submit', handlerSearch);
+selectors.btnLoadMore.addEventListener('click', handlerLoadMore);
 
 function handlerSearch(evt) {
   evt.preventDefault();
@@ -31,6 +33,7 @@ function handlerSearch(evt) {
       }
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images"`);
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
+      gallery.refresh();
       hitsCounter += hits.length;
 
       if (hitsCounter < totalHits) {
@@ -73,7 +76,7 @@ function handlerLoadMore() {
         return;
       }
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
-
+      gallery.refresh();
       hitsCounter += hits.length;
 
       if (hitsCounter >= totalHits) {
@@ -114,7 +117,7 @@ function createMarkup(arr) {
         comments,
         downloads,
       }) => `<div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" width="340" height="230"/>
+  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" loading="lazy" width="340" height="230"/></a>
   <div class="info">
     <p class="info-item">
       <b>Likes</b>${likes}
@@ -133,3 +136,5 @@ function createMarkup(arr) {
     )
     .join('');
 }
+
+const gallery = new SimpleLightbox('.gallery a');
