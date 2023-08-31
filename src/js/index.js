@@ -117,7 +117,7 @@ function createMarkup(arr) {
         comments,
         downloads,
       }) => `<div class="photo-card">
-  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" loading="lazy" width="340" height="230"/></a>
+  <a href="${largeImageURL}"><img src="${webformatURL}" alt="${tags}" loading="lazy" width="340" height="280"/></a>
   <div class="info">
     <p class="info-item">
       <b>Likes</b>${likes}
