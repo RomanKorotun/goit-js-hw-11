@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+}
+
+.search-form {
+  background-image: linear-gradient(to bottom, blue, yellow);
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 70px;
+}
