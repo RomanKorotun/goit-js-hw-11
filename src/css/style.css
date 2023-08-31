@@ -2,10 +2,76 @@ body {
   margin: 0;
 }
 
+img {
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
 .search-form {
   background-image: linear-gradient(to bottom, blue, yellow);
   display: flex;
   justify-content: center;
   gap: 2px;
-  padding: 70px;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+input {
+  height: 24px;
+}
+
+.gallery {
+  justify-content: center;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+
+  border-top: none;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.photo-card {
+  transition: transform 350ms;
+}
+
+.photo-card:hover {
+  box-shadow: 1px 1px 20px black;
+  transform: scale(1.03);
+}
+
+.load-more-hidden {
+  display: none;
+}
+
+.load-more {
+  display: block;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 20px;
+  padding: 10px 30px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.load-more:hover {
+  box-shadow: 1px 1px 5px black;
+  background-color: royalblue;
 }
