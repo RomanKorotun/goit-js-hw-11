@@ -3,6 +3,8 @@ import Notiflix from 'notiflix';
 import simpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const gallery = new SimpleLightbox('.gallery a');
+
 const selectors = {
   form: document.querySelector('.search-form'),
   container: document.querySelector('.gallery'),
@@ -155,4 +157,4 @@ function createMarkup(arr) {
     .join('');
 }
 
-const gallery = new SimpleLightbox('.gallery a');
+// const gallery = new SimpleLightbox('.gallery a');
