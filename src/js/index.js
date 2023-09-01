@@ -40,12 +40,12 @@ function handlerSearch(evt) {
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images"`);
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
 
-      const { height: cardHeight } =
-        selectors.container.firstElementChild.getBoundingClientRect();
-      window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
-      });
+      // const { height: cardHeight } =
+      //   selectors.container.firstElementChild.getBoundingClientRect();
+      // window.scrollBy({
+      //   top: cardHeight * 0.5,
+      //   behavior: 'smooth',
+      // });
 
       gallery.refresh();
       hitsCounter += hits.length;
@@ -92,7 +92,7 @@ function handlerLoadMore() {
       const { height: cardHeight } =
         selectors.container.firstElementChild.getBoundingClientRect();
       window.scrollBy({
-        top: cardHeight * 2,
+        top: cardHeight * 1.6,
         behavior: 'smooth',
       });
 
@@ -156,5 +156,3 @@ function createMarkup(arr) {
     )
     .join('');
 }
-
-// const gallery = new SimpleLightbox('.gallery a');
