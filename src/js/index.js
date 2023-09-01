@@ -20,6 +20,10 @@ function handlerSearch(evt) {
   selectors.container.innerHTML = '';
   selectors.btnLoadMore.classList.replace('load-more', 'load-more-hidden');
   const { searchQuery } = evt.currentTarget.elements;
+  if (searchQuery.value === '') {
+    Notiflix.Notify.info('Please enter the details of your request');
+    return;
+  }
   serviceSearch(searchQuery.value, page)
     .then(response => {
       const {
@@ -33,6 +37,14 @@ function handlerSearch(evt) {
       }
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images"`);
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
+
+      const { height: cardHeight } =
+        selectors.container.firstElementChild.getBoundingClientRect();
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
+
       gallery.refresh();
       hitsCounter += hits.length;
 
@@ -60,8 +72,6 @@ async function serviceSearch(inputValue, currentPage) {
   return await axios.get(`${BASE_URL}?${params}`);
 }
 
-// largeImageURL - посилання на велике зображення.
-
 function handlerLoadMore() {
   page += 1;
   serviceSearchLoadMore(page)
@@ -76,6 +86,14 @@ function handlerLoadMore() {
         return;
       }
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
+
+      const { height: cardHeight } =
+        selectors.container.firstElementChild.getBoundingClientRect();
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
+
       gallery.refresh();
       hitsCounter += hits.length;
 
