@@ -22,7 +22,8 @@ function handlerSearch(evt) {
   selectors.container.innerHTML = '';
   selectors.btnLoadMore.classList.replace('load-more', 'load-more-hidden');
   const { searchQuery } = evt.currentTarget.elements;
-  if (searchQuery.value === '') {
+
+  if (searchQuery.value.trim() === '') {
     Notiflix.Notify.info('Please enter the details of your request');
     return;
   }
@@ -39,13 +40,6 @@ function handlerSearch(evt) {
       }
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images"`);
       selectors.container.insertAdjacentHTML('beforeend', createMarkup(hits));
-
-      // const { height: cardHeight } =
-      //   selectors.container.firstElementChild.getBoundingClientRect();
-      // window.scrollBy({
-      //   top: cardHeight * 0.5,
-      //   behavior: 'smooth',
-      // });
 
       gallery.refresh();
       hitsCounter += hits.length;
