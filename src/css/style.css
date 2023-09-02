@@ -3,7 +3,6 @@ body {
 }
 
 a {
-  /* color: black; */
   color: black;
   transition: color 250ms, border-color 250ms;
 }
