@@ -2,12 +2,13 @@ import Notiflix from 'notiflix';
 import simpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { createMarkup } from './fn-createmarkup';
-import { serviceSearch, serviceSearchLoadMore } from './fn-request-api';
+import { serviceSearch } from './fn-request-api';
 
 const gallery = new SimpleLightbox('.gallery a');
 
 const selectors = {
   form: document.querySelector('.search-form'),
+  input: document.querySelector('.search-form-input'),
   container: document.querySelector('.gallery'),
   btnLoadMore: document.querySelector('.js-load-more'),
 };
@@ -22,13 +23,15 @@ function handlerSearch(evt) {
   evt.preventDefault();
   selectors.container.innerHTML = '';
   selectors.btnLoadMore.classList.replace('load-more', 'load-more-hidden');
-  const { searchQuery } = evt.currentTarget.elements;
 
-  if (searchQuery.value.trim() === '') {
+  if (selectors.input.value.trim() === '') {
     Notiflix.Notify.info('Please enter the details of your request');
     return;
   }
-  serviceSearch(searchQuery.value, page)
+
+  page = 1;
+
+  serviceSearch(selectors.input.value, (currentPage = '1'))
     .then(response => {
       const {
         data: { hits, totalHits },
@@ -57,7 +60,7 @@ function handlerSearch(evt) {
 
 function handlerLoadMore() {
   page += 1;
-  serviceSearchLoadMore(page)
+  serviceSearch(selectors.input.value, page)
     .then(response => {
       const {
         data: { hits, totalHits },
