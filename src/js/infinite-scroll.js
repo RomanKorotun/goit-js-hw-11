@@ -37,7 +37,7 @@ function handlerSearch(evt) {
 
   page = 1;
 
-  serviceSearch(selectors.input.value, (currentPage = '1'))
+  serviceSearch(selectors.input.value, page)
     .then(response => {
       const {
         data: { hits, totalHits },
