@@ -69,6 +69,15 @@ input {
   height: 24px;
 }
 
+.btn-submit {
+  transition: background-color 250ms;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+  background-color: darkgray;
+}
+
 .gallery {
   justify-content: center;
   margin-top: 62px;
