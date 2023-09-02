@@ -31,6 +31,7 @@ function handlerSearch(evt) {
 
   page = 1;
 
+  //
   serviceSearch(selectors.input.value, page)
     .then(response => {
       const {
