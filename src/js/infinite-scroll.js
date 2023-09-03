@@ -18,7 +18,7 @@ let hitsCounter = 0;
 
 const options = {
   root: null,
-  rootMargin: '400px',
+  rootMargin: '300px',
 };
 const observer = new IntersectionObserver(handlerLoadMore, options);
 
